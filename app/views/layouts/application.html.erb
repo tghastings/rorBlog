@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ThomasHastings.com - Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|Roboto:400,400italic">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-LRlmVvLKVApDVGuspQFnRQJjkv0P7/YFrw84YYQtmYG4nK8c+M+NlmYDCv0rKWpG" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= javascript_pack_tag 'Index' %>
+  </head>
+
+<body>
+  <div class="container content">
+    <header class="masthead">
+      <h3 class="masthead-title">
+        <a href="/" title="Home">Thomas Hastings</a>
+      </h3>
+      <ul class="nav">
+        <li class="nav-projects" role="presentation"><a href="https://github.com/tghastings">Projects</a></li>
+        <li class="nav-research" role="presentation"><a href="https://scholar.google.com/citations?user=8iQ6Jt0AAAAJ">Research</a></li>
+        <li class="nav-about" role="presentation"><a href="https://www.about.me/thomashastings">About</a></li>
+        <% if user_signed_in? %>
+        <li>
+        <%= link_to('New Post', '/post') %>
+        </li>
+        <li>
+        <%= link_to('Profile', edit_user_registration_path) %>
+        </li>
+        <li>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>    
+        </li>
+      <% else %>
+        <li>
+        <%= link_to('Login', new_user_session_path) %>
+        </li>
+      <% end %>
+        </ul>
+    </header>
+
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <p class="notice"><%= notice %></p>
+    <p class="badMessage"><%= alert %></p>
+    <div id="root"></div>
+    <%= yield %>
+    <footer class="footer blog-footer">
+      <hr />
+      <p>Made in Colorado <i class="fas fa-mountains"></i>.</p>
+  </footer>
+  </body>
+</html>

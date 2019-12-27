@@ -1,0 +1,645 @@
+// Place all the styles related to the Homepage controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+/*
+ *                        ___
+ *                       /\_ \
+ *  _____     ___     ___\//\ \      __
+ * /\ '__`\  / __`\  / __`\\ \ \   /'__`\
+ * \ \ \_\ \/\ \_\ \/\ \_\ \\_\ \_/\  __/
+ *  \ \ ,__/\ \____/\ \____//\____\ \____\
+ *   \ \ \/  \/___/  \/___/ \/____/\/____/
+ *    \ \_\
+ *     \/_/
+ *
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/poole.
+ */
+
+/*
+ * Contents
+ *
+ * Body resets
+ * Custom type
+ * Messages
+ * Container
+ * Masthead
+ * Posts and pages
+ * Pagination
+ * Reverse layout
+ * Themes
+ */
+
+/*
+ * Body resets
+ *
+ * Update the foundational and global aspects of the page.
+ */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+}
+
+html {
+  /*font-family: 'PT Serif', serif;*/
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+@media (min-width: 38em) {
+  html {
+    font-size: 20px;
+  }
+}
+
+body {
+  color: #333;
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* No `:visited` state is required by default (browsers will use `a`) */
+a {
+  color: #9c9c9c;
+  text-decoration: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+a strong {
+  color: inherit;
+}
+/* `:focus` is linked to `:hover` for basic accessibility */
+a:hover,
+a:focus {
+  text-decoration: none;
+  border-top: #eee solid 1px;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PT Serif", serif;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #333;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.025rem;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  margin-top: 0rem;
+  font-size: 1.5rem;
+}
+h3 {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+}
+h4,
+h5,
+h6 {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* Body text */
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+strong {
+  color: #303030;
+}
+
+/* Lists */
+ul,
+ol,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-bottom: 0.5rem;
+}
+
+/* Misc */
+hr {
+  width: 150px;
+  height: 1px;
+  margin: 2rem auto;
+  background-color: #eee;
+  border: 0;
+}
+abbr {
+  font-size: 85%;
+  font-weight: bold;
+  color: #555;
+  text-transform: uppercase;
+}
+abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #e5e5e5;
+}
+
+/* Code */
+code,
+pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+code {
+  padding: 0.25em 0.5em;
+  font-size: 85%;
+  color: #bf616a;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+}
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f9f9f9;
+}
+pre code {
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+  background-color: transparent;
+}
+
+/* Pygments via Jekyll */
+.highlight {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+.highlight pre {
+  margin-bottom: 0;
+}
+
+/* Gist via GitHub Pages */
+.gist .gist-file {
+  font-family: Menlo, Monaco, "Courier New", monospace !important;
+}
+.gist .markdown-body {
+  padding: 15px;
+}
+.gist pre {
+  padding: 0;
+  background-color: transparent;
+}
+.gist .gist-file .gist-data {
+  font-size: 0.8rem !important;
+  line-height: 1.4;
+}
+.gist code {
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+@media (min-width: 34rem) {
+  .listing-container li a {
+    width: initial !important;
+    border-bottom: 1px solid #c9c9c9;
+  }
+  .listing-container date {
+    float: right;
+    width: initial !important;
+    border: none !important;
+  }
+}
+
+.listing-container {
+  font-family: "PT Serif", serif;
+  display: block;
+  float: left;
+  padding-bottom: 20px;
+  width: 100%;
+}
+.listing-container ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.listing-container li {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.listing-container li a {
+  width: 100%;
+  display: block;
+  float: left;
+  color: #333;
+  border-top: 1px solid #fff;
+}
+.listing-container li a:hover {
+  color: #333;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #333;
+}
+.listing-container date {
+  color: #9c9c9c;
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #c9c9c9;
+}
+
+/* Articles */
+.article h2 {
+  padding: 0;
+  margin: 0;
+}
+.article date {
+  float: left;
+  color: #9c9c9c;
+  display: block;
+  float: left;
+  width: 100%;
+  padding-bottom: 20px;
+}
+.page {
+  float: left;
+  display: block;
+  float: left;
+  width: 100%;
+  padding-bottom: 20px !important;
+}
+.article h3 {
+  font-size: 1.45rem;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  text-align: center;
+  color: #454545;
+}
+/* Quotes */
+blockquote {
+  padding: 0.5rem 1rem;
+  margin: 0.8rem 0;
+  color: #7a7a7a;
+  border-left: 0.25rem solid #e5e5e5;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+@media (min-width: 30em) {
+  blockquote {
+    padding-right: 5rem;
+    padding-left: 1.25rem;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-radius: 5px;
+}
+
+/* Tables */
+table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #e5e5e5;
+}
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
+}
+
+/*
+ * Custom type
+ *
+ * Extend paragraphs with `.lead` for larger introductory text.
+ */
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+/*
+ * Messages
+ *
+ * Show alert messages to users. You may add it to single elements like a `<p>`,
+ * or to a parent if there are multiple elements to show.
+ */
+
+.message {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  color: #717171;
+  background-color: #f9f9f9;
+}
+
+/*
+ * Container
+ *
+ * Center the page content.
+ */
+
+.container {
+  max-width: 38rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+ * Masthead
+ *
+ * Super small header above the content for site name and short description.
+ */
+
+.masthead {
+  padding-top: 1rem;
+  margin-bottom: 0;
+  text-align: right;
+}
+.masthead-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #333;
+  display: block;
+}
+.masthead-title a {
+  color: #333;
+  float: left;
+  border-top: #fff solid 1px;
+}
+.masthead-title a:hover {
+  border-top: #eee solid 1px;
+}
+.masthead-title small {
+  font-size: 75%;
+  color: #333;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.masthead .nav {
+  font-family: "PT Serif", serif;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.masthead .nav a {
+  color: #333;
+}
+.masthead .nav ul {
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.masthead .nav li {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  padding-right: 10px;
+}
+.masthead .nav li:last-child {
+  padding: 0;
+}
+
+.masthead:after {
+  display: block;
+  content: "";
+  width: 150px;
+  height: 1px;
+  margin: 3rem auto;
+  background-color: #eee;
+}
+
+/*
+ * Posts and pages
+ *
+ * Each post is wrapped in `.post` and is used on default and post layouts. Each
+ * page is wrapped in `.page` and is only used on the page layout.
+ */
+
+.page,
+.post {
+  margin-bottom: 4em;
+}
+
+/* Blog post or page title */
+.page-title,
+.post-title,
+.post-title a {
+  color: #303030;
+}
+.page-title,
+.post-title {
+  margin-top: 0;
+}
+
+/* Meta data line below post title */
+.post-date {
+  display: block;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  color: #9a9a9a;
+}
+
+/* Related posts */
+.related {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid #eee;
+}
+.related-posts {
+  padding-left: 0;
+  list-style: none;
+}
+.related-posts h3 {
+  margin-top: 0;
+}
+.related-posts li small {
+  font-size: 75%;
+  color: #999;
+}
+.related-posts li a:hover {
+  color: #268bd2;
+  text-decoration: none;
+}
+.related-posts li a:hover small {
+  color: inherit;
+}
+
+footer {
+  display: block;
+  float: left;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+footer p {
+  display: block;
+  text-align: center;
+  font-family: "PT Serif", serif;
+}
+/*
+ * Pagination
+ *
+ * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
+ * there are no more previous or next posts to show.
+ */
+
+.pagination {
+  overflow: hidden; /* clearfix */
+  margin-left: -1rem;
+  margin-right: -1rem;
+  font-family: "PT Serif", Helvetica, Arial, sans-serif;
+  color: #ccc;
+  text-align: center;
+}
+
+/* Pagination items can be `span`s or `a`s */
+.pagination-item {
+  display: block;
+  padding: 1rem;
+  border: 1px solid #eee;
+}
+.pagination-item:first-child {
+  margin-bottom: -1px;
+}
+
+/* Only provide a hover state for linked pagination items */
+a.pagination-item:hover {
+  background-color: #f5f5f5;
+}
+
+@media (min-width: 30em) {
+  .pagination {
+    margin: 3rem 0;
+  }
+  .pagination-item {
+    float: left;
+    width: 50%;
+  }
+  .pagination-item:first-child {
+    margin-bottom: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  .pagination-item:last-child {
+    margin-left: -1px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+.blog-footer {
+  color: #999;
+  text-align: center;
+}
+.blog-footer a {
+  color: #c70404;
+}
+.inputTitle {
+  font-size: 25px;
+  font-family: "PT Serif", serif;
+}
+.login {
+  width: 340px;
+  margin: 50px auto;
+  margin-bottom: 15px;
+  background: #efeee2;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.loginBtn {
+  margin-top: 10px;
+  background-color: #fefefe;
+  min-height: 38px;
+  border-radius: 2px;
+  font-size: 15px;
+  border: 0;
+  border-bottom: 2px solid #c5c5c5;
+  font-weight: normal;
+  width: 100%;
+  border-radius: 5px;
+  color: #999;
+}
+.form-control {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #bfbeb2;
+  border: 1px solid #fff;
+}
+.badMessage {
+  text-align: center;
+  color: #c70404;
+}
+.sub-nav {
+  font-family: "PT Serif", serif;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #efeee2;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  border: 5px solid #fff;
+}
+.sub-nav h4 {
+  float: left;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.sub-nav a {
+  color: #333;
+  font-size: 18px;
+}
+.sub-nav ul {
+  padding: 0;
+  margin: 0;
+  text-align: right;
+}
+.sub-nav li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+.deleteBtn {
+  display: block;
+  float: left;
+  width: 100%;
+  text-align: right;
+}
