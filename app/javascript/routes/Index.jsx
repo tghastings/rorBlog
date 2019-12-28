@@ -3,13 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
 import Post from "../components/Post";
 import NewPost from "../components/NewPost";
+import Blank from "../components/Blank";
+import NoMatch from "../components/NoMatch";
 
 export default (
   <Router>
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/post/:id" component={Post} />
-      <Route path="/post" component={NewPost} />
+      <Route path="/users/sign_in" component={Blank} />
+      <Route path="/post/create" component={NewPost} />
+      <Route path="/notfound" exact component={NoMatch} />
+      <Route path="/:id" exact component={Post} />
+      <Route component={NoMatch} />
     </Switch>
   </Router>
 );

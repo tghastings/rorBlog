@@ -19,7 +19,7 @@ class Posts extends React.Component {
   }
 
   fixDate(date) {
-    console.log(moment(new Date(date)).format("LL"));
+    // console.log(moment(new Date(date)).format("LL"));
     return moment(new Date(date)).format("LL");
     // return moment(String(date)).format("LL");
   }
@@ -41,11 +41,13 @@ class Posts extends React.Component {
       <>
         <main id="posts">
           {this.state.years.map(year => (
-            <PostYear year={year}>
+            <PostYear year={year} key={year}>
               {this.state.posts.map(post =>
                 post.Year === year ? (
                   <CommPost
                     id={post.id}
+                    key={post.id}
+                    slug={post.slug}
                     date={this.fixDate(post.created_at)}
                     title={post.title}
                   />

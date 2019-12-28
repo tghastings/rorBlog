@@ -15,10 +15,10 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    if post
-      render json: post
+    if postBySlug
+      render json: postBySlug
     else
-      render json: post.errors
+      render json: { message: 'Post not found!' }
     end
   end
 
@@ -34,5 +34,9 @@ class Api::V1::PostsController < ApplicationController
 
   def post
     @post ||= Post.find(params[:id])
+  end
+  
+  def postBySlug
+    @post ||= Post.find_by slug: params[:slug]
   end
 end

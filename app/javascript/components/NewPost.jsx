@@ -20,7 +20,7 @@ class NewPost extends React.Component {
   componentDidMount() {
     axios.get(`/auth/is_signed_in.json`).then(res => {
       //Decide what to do
-      console.log(res.data.signed_in);
+      // console.log(res.data.signed_in);
       this.userAuth(res.data);
     });
 
@@ -34,7 +34,7 @@ class NewPost extends React.Component {
 
   userAuth(userData) {
     if (userData.signed_in == true) {
-      console.log(userData.user.email);
+      // console.log(userData.user.email);
       this.setState({ ["author"]: userData.user.email });
     } else {
       this.props.history.push("/");
@@ -56,7 +56,7 @@ class NewPost extends React.Component {
 
     const url = "/api/v1/posts/create";
     const { title, content, author } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
 
     if (title.length == 0 || content.length == 0 || author.length == 0)
       return "error";
@@ -80,9 +80,9 @@ class NewPost extends React.Component {
         if (response.ok) {
           return response.json();
         }
-        throw new Error("Network response was not ok.");
+        throw new Error("Error something happened.");
       })
-      .then(response => this.props.history.push(`/post/${response.id}`))
+      .then(response => this.props.history.push(`/${response.slug}`))
       .catch(error => console.log(error.message));
   }
 

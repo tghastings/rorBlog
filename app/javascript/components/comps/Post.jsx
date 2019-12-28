@@ -9,7 +9,7 @@ class CommPost extends React.Component {
   render() {
     return (
       <li>
-        <Link to={"/post/" + this.props.id}>{this.props.title}</Link>
+        <Link to={"/" + this.props.slug}>{this.props.title}</Link>
         <date>{this.props.date}</date>
       </li>
     );

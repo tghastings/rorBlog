@@ -1,5 +1,6 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
@@ -23,13 +24,16 @@ class Post extends React.Component {
   componentDidMount() {
     axios.get(`/auth/is_signed_in.json`).then(res => {
       //Decide what to do
-      console.log(res.data.signed_in);
+      // console.log(res.data.signed_in);
       if (res.data.signed_in == true) this.setState({ auth: true });
     });
     axios.get("/api/v1/show/" + this.postID).then(res => {
       const post = res.data;
-      // console.log(posts);
-      this.setState({ post: post });
+      if (post.message == "Post not found!") {
+        this.props.history.push("/notfound");
+      } else {
+        this.setState({ post: post });
+      }
     });
   }
 
@@ -40,7 +44,8 @@ class Post extends React.Component {
   deletePost() {
     let conf = confirm("Are you sure?");
     if (!conf) return;
-    const url = `/api/v1/destroy/${this.postID}}`;
+    // console.log(this.state);
+    const url = `/api/v1/destroy/${this.state.post.id}}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
     fetch(url, {
@@ -67,17 +72,21 @@ class Post extends React.Component {
           <h2>{this.state.post.title}</h2>
           <date>{this.fixDate(this.state.post.created_at)}</date>
           <span>{ReactHtmlParser(this.state.post.content)}</span>
-          {this.state.auth ? (
-            <span class="deleteBtn">
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={this.deletePost}
-              >
-                Delete Post
-              </button>
-            </span>
-          ) : null}
+          <span className="deleteBtn">
+            <Link to={"/"}>Go Back</Link>
+            {this.state.auth ? (
+              <>
+                <span> | </span>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={this.deletePost}
+                >
+                  Delete Post
+                </button>
+              </>
+            ) : null}
+          </span>
         </div>
       </main>
     );
