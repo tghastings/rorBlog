@@ -77,6 +77,8 @@ class Post extends React.Component {
             {this.state.auth ? (
               <>
                 <span> | </span>
+                <Link to={`/${this.postID}/edit`}>Edit Article</Link>
+                <span> | </span>
                 <button
                   type="button"
                   className="btn btn-danger"

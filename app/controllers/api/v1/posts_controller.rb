@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :update]
   def index
     post = Post.all.order(created_at: :desc)
     render json: post
@@ -12,6 +12,11 @@ class Api::V1::PostsController < ApplicationController
     else
       render json: post.errors
     end
+  end
+
+  def update
+    post.update!(post_params)
+    render json: { slug: post.slug }
   end
 
   def show
@@ -29,14 +34,14 @@ class Api::V1::PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:title, :date, :author, :content, :tags)
+    params.require(:post).permit(:title, :date, :author, :content, :tags, :id)
   end
 
   def post
-    @post ||= Post.find(params[:id])
+    post ||= Post.find(params[:id])
   end
   
   def postBySlug
-    @post ||= Post.find_by slug: params[:slug]
+    post ||= Post.find_by slug: params[:slug]
   end
 end
